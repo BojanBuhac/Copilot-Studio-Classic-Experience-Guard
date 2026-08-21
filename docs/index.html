@@ -57,6 +57,16 @@
     .video-shell video{display:block;width:100%;height:auto;background:#000}
     .video-caption{padding:14px 16px;background:#fff;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
     @media(max-width:850px){.media-grid{grid-template-columns:1fr}}
+
+    .deploy-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}
+    .deploy-panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px}
+    .deploy-panel h3{margin-top:0}
+    .checklist{margin:16px 0 0;padding-left:20px;color:var(--muted);line-height:1.75}
+    .checklist li{margin:6px 0}
+    .path{font-family:Consolas,"SFMono-Regular",monospace;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:8px;padding:10px 12px;display:block;margin:10px 0;overflow:auto}
+    .architecture{background:#0f172a;color:#e5e7eb;border-radius:16px;padding:20px;margin-top:22px;line-height:1.6;overflow:auto}
+    .mini{font-size:13px;color:var(--muted)}
+    @media(max-width:850px){.deploy-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -151,36 +161,197 @@
         </div>
       </section>
 
-      <section id="deployment">
-        <h2 class="section-title">Enterprise deployment</h2>
-        <p class="section-copy">For production, package and host the extension centrally, then deploy it through Microsoft Edge policy. A force-installed extension is installed silently and users cannot disable or remove it.</p>
 
-        <div class="steps">
-          <div class="step"><div><strong>Package and host the extension.</strong><p>Publish it in Microsoft Edge Add-ons for private organizational use, or self-host a signed <code>.crx</code> package and update manifest on an HTTPS endpoint reachable by managed devices.</p></div></div>
-          <div class="step"><div><strong>Obtain the extension ID.</strong><p>Use the ID assigned by the Edge Add-ons store, or the stable ID generated for your signed/self-hosted package.</p></div></div>
-          <div class="step"><div><strong>Force-install through policy.</strong><p>Use <code>ExtensionInstallForcelist</code> or the more granular <code>ExtensionSettings</code> policy.</p></div></div>
-          <div class="step"><div><strong>Target a pilot group first.</strong><p>Assign the policy to a small maker/admin group, validate Copilot Studio behavior, and then expand the assignment.</p></div></div>
-          <div class="step"><div><strong>Validate on endpoints.</strong><p>Open <code>edge://policy</code> and <code>edge://extensions</code> to confirm that the policy is applied and the extension is marked as installed by your organization.</p></div></div>
+      <section id="deployment">
+        <h2 class="section-title">Enterprise deployment with Microsoft Intune</h2>
+        <p class="section-copy">
+          The recommended enterprise approach is to <strong>force-install</strong> the extension through Microsoft Edge policy.
+          When deployed this way, installation is silent and users cannot disable or remove the extension.
+        </p>
+
+        <div class="note">
+          <strong>Important prerequisite:</strong> Intune cannot deploy the ZIP file directly. For enterprise policy deployment,
+          package the extension as a signed <code>.crx</code> and host it together with an <code>update.xml</code> manifest,
+          or publish the extension through Microsoft Edge Add-ons and use its extension ID.
         </div>
 
-        <h3>Group Policy / ADMX</h3>
-        <p class="section-copy">In Group Policy Editor go to <strong>Administrative Templates → Microsoft Edge → Extensions → Control which extensions are installed silently</strong>. Enable the policy and add the extension ID. For a self-hosted extension, append the update-manifest URL.</p>
-        <pre>EXTENSION_ID;https://your-company.example/extensions/copilot-studio-classic/update.xml</pre>
+        <h3>1. Package the extension as CRX</h3>
+        <div class="steps">
+          <div class="step"><div><strong>Open Microsoft Edge extensions.</strong><span class="path">edge://extensions</span></div></div>
+          <div class="step"><div><strong>Enable Developer mode.</strong><p>Use the toggle in the Extensions page.</p></div></div>
+          <div class="step"><div><strong>Click Pack extension.</strong><p>Select the folder that contains <code>manifest.json</code>, <code>content.js</code> and the other extension files.</p></div></div>
+          <div class="step"><div><strong>Leave the private key field empty the first time.</strong><p>Edge creates both a signed <code>.crx</code> package and a <code>.pem</code> private key.</p></div></div>
+          <div class="step"><div><strong>Keep the PEM file secure.</strong><p>Use the same PEM file for every future version. Otherwise the extension ID changes and Edge treats the update as a different extension.</p></div></div>
+        </div>
 
-        <h3>Microsoft Intune / Edge policy</h3>
-        <p class="section-copy">Create a Microsoft Edge configuration policy and configure <code>ExtensionInstallForcelist</code>. Alternatively, use <code>ExtensionSettings</code> for a single consolidated JSON policy.</p>
+        <h3>2. Get the final extension ID</h3>
+        <p class="section-copy">
+          After packing, load or install the signed extension and open:
+        </p>
+        <span class="path">edge://extensions</span>
+        <p class="section-copy">
+          Copy the ID shown on the extension card. Do not rely on the ID of a previously unpacked build unless the same signing key is used.
+        </p>
+
+        <h3>3. Create the update manifest</h3>
+        <p class="section-copy">Create a file named <code>update.xml</code>:</p>
+        <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;gupdate xmlns="http://www.google.com/update2/response" protocol="2.0"&gt;
+  &lt;app appid="YOUR_EXTENSION_ID"&gt;
+    &lt;updatecheck
+      codebase="https://your-host/extensions/copilotstudio/copilot-studio-classic-extension.crx"
+      version="1.1.0" /&gt;
+  &lt;/app&gt;
+&lt;/gupdate&gt;</pre>
+        <p class="mini">The version in <code>update.xml</code> must match the version in <code>manifest.json</code>.</p>
+
+        <h3>4. Host the CRX and update.xml</h3>
+        <p class="section-copy">Place both files on an HTTPS endpoint reachable by all managed devices:</p>
+        <pre>https://your-host/extensions/copilotstudio/copilot-studio-classic-extension.crx
+https://your-host/extensions/copilotstudio/update.xml</pre>
+        <p class="section-copy">
+          Suitable hosting options include Azure Blob Storage / Static Website, Azure App Service, or an internal HTTPS web server.
+          For enterprise production, use a controlled corporate endpoint.
+        </p>
+
+        <h3>5. Verify hosting before Intune configuration</h3>
+        <ul class="checklist">
+          <li>Open the <code>update.xml</code> URL from a managed device and confirm it is reachable.</li>
+          <li>Open the <code>.crx</code> URL and confirm the package is reachable.</li>
+          <li>Ensure the URLs do not require interactive authentication.</li>
+        </ul>
+
+        <h3>6. Create the Intune configuration policy</h3>
+        <div class="deploy-panel">
+          <strong>Intune admin center path</strong>
+          <span class="path">Devices → Windows → Configuration → Create → New policy</span>
+          <ul class="checklist">
+            <li><strong>Platform:</strong> Windows 10 and later</li>
+            <li><strong>Profile type:</strong> Settings catalog</li>
+            <li><strong>Name example:</strong> Edge - Copilot Studio Classic Experience Guard</li>
+          </ul>
+        </div>
+
+        <h3>7. Add the Microsoft Edge extension policy</h3>
+        <p class="section-copy">Click <strong>Add settings</strong> and search for:</p>
+        <span class="path">Configure extension management settings</span>
+        <p class="section-copy">
+          This maps to Edge's <code>ExtensionSettings</code> policy and is the preferred option for this solution.
+        </p>
+
+        <h3>8. Configure force installation</h3>
+        <p class="section-copy">Use the final extension ID and the hosted update manifest URL:</p>
         <pre>{
   "YOUR_EXTENSION_ID": {
     "installation_mode": "force_installed",
-    "update_url": "https://your-company.example/extensions/copilot-studio-classic/update.xml"
+    "update_url": "https://your-host/extensions/copilotstudio/update.xml",
+    "override_update_url": true
   }
 }</pre>
+        <p class="section-copy">
+          <code>force_installed</code> installs the extension silently and prevents users from disabling or removing it.
+          <code>override_update_url</code> ensures Edge uses your self-hosted update source for later versions.
+        </p>
 
-        <h3>Microsoft Edge management service</h3>
-        <p class="section-copy">In the Microsoft 365 admin center, select the relevant Edge configuration profile, open the <strong>Extensions</strong> section, add the extension by ID, and set its installation policy to <strong>Force</strong>.</p>
+        <h3>9. Assign the policy</h3>
+        <ul class="checklist">
+          <li>Start with a pilot Entra ID group.</li>
+          <li>Test with a small number of Copilot Studio makers or admins.</li>
+          <li>Expand to a wider group only after validation.</li>
+        </ul>
 
-        <div class="note"><strong>Important:</strong> this solution depends on Copilot Studio's current client preference <code>AgenticAutomationsShellOptIn</code> and current UI structure. Treat it as a managed compatibility control, not a Microsoft product setting. Validate it after significant Copilot Studio releases.</div>
+        <h3>10. Force an Intune sync</h3>
+        <p class="section-copy">On the pilot Windows device:</p>
+        <span class="path">Settings → Accounts → Access work or school → Connected organization → Info → Sync</span>
+        <p class="section-copy">Then restart Microsoft Edge.</p>
+
+        <h3>11. Verify the policy on the endpoint</h3>
+        <span class="path">edge://policy</span>
+        <ul class="checklist">
+          <li>Click <strong>Reload policies</strong>.</li>
+          <li>Confirm <code>ExtensionSettings</code> is present.</li>
+          <li>Confirm the policy status is <strong>OK</strong>.</li>
+        </ul>
+
+        <h3>12. Verify the extension</h3>
+        <span class="path">edge://extensions</span>
+        <p class="section-copy">
+          Confirm <strong>Copilot Studio Classic Experience Guard</strong> is installed and shown as managed by your organization.
+          A force-installed extension should not expose a user-removable state.
+        </p>
+
+        <h3>13. Validate Copilot Studio behavior</h3>
+        <div class="deploy-grid">
+          <div class="deploy-panel">
+            <h3>Production</h3>
+            <span class="path">https://copilotstudio.microsoft.com/</span>
+          </div>
+          <div class="deploy-panel">
+            <h3>Preview</h3>
+            <span class="path">https://copilotstudio.preview.microsoft.com/</span>
+          </div>
+        </div>
+        <p class="section-copy">In DevTools Console, verify:</p>
+        <pre>localStorage.getItem("AgenticAutomationsShellOptIn")</pre>
+        <p class="section-copy">Expected result:</p>
+        <pre>"false"</pre>
+
+        <p class="section-copy">Also confirm that:</p>
+        <ul class="checklist">
+          <li>The <strong>Try now</strong> promotion is hidden.</li>
+          <li>The <strong>New experience</strong> toggle is hidden.</li>
+          <li>If a user reaches the new experience, the extension restores the classic experience.</li>
+        </ul>
+
+        <h3>Updating the extension later</h3>
+        <p class="section-copy">For version 1.2.0 or later:</p>
+        <ol class="checklist">
+          <li>Update <code>manifest.json</code> to the new version.</li>
+          <li>Repack using the <strong>same PEM private key</strong>.</li>
+          <li>Replace the hosted <code>.crx</code>.</li>
+          <li>Update the version in <code>update.xml</code>.</li>
+          <li>Keep the extension ID and Intune policy unchanged.</li>
+        </ol>
+
+        <h3>Alternative: ExtensionInstallForcelist</h3>
+        <p class="section-copy">
+          Instead of <code>ExtensionSettings</code>, Intune can also use the Microsoft Edge policy
+          <strong>Control which extensions are installed silently</strong>.
+        </p>
+        <pre>YOUR_EXTENSION_ID;https://your-host/extensions/copilotstudio/update.xml</pre>
+        <p class="section-copy">
+          For this solution, <code>ExtensionSettings</code> is recommended because it gives explicit control over
+          installation mode and update behavior.
+        </p>
+
+        <div class="architecture"><strong>Recommended architecture</strong>
+
+Intune
+  │
+  │  ExtensionSettings
+  ▼
+Microsoft Edge
+  │
+  ├─ force_installed
+  ▼
+update.xml
+  │
+  ▼
+copilot-studio-classic-extension.crx
+  │
+  ▼
+Copilot Studio Classic Experience Guard
+  │
+  ├─ copilotstudio.microsoft.com
+  └─ copilotstudio.preview.microsoft.com</div>
+
+        <div class="note">
+          <strong>Compatibility note:</strong> this is a managed workaround, not a native Copilot Studio tenant setting.
+          It currently depends on the client-side preference <code>AgenticAutomationsShellOptIn</code> and current Copilot Studio UI structure.
+          Revalidate the extension after significant Copilot Studio releases.
+        </div>
       </section>
+
     </main>
 
     <footer>Internal enterprise solution for controlled Copilot Studio experience rollout.</footer>
