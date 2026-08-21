@@ -1,1 +1,166 @@
+I want to prevent page from loading in browser in new experience. this is the new experience page source:
 
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name="theme-color" content="#000000"><meta name="robots" content="noindex,nofollow,noarchive"><meta name="color-scheme" content="light dark"/><link rel="manifest" href="/manifest.json"><link rel="shortcut icon" href="/favicon.ico?v=2"><title>Microsoft Copilot Studio</title><style>#root,html{height:100%}body{margin:0;padding:0;font-family:sans-serif;height:100%}iframe{border:0}*{box-sizing:border-box;margin:0}</style><script nomodule crossorigin="anonymous" src="https://content.powerapps.com/resource/makerx/static/legacy-block.8HYFEdnf.js"></script></head><body id="body"><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div><script type="text/javascript">window._ppuxConfig={"aadClientId":"96ff4394-9197-43aa-b393-6a41652e21f8","location":"NIT","region":"prod","geo":"IT","publicPath":"https://content.powerapps.com/resource/makerx/","alternativePublicPath":"https://static.powerapps.com/resource/makerx/","graphQLEndpoint":"https://graphql/","portalVersionedEndpoint":"https://web.powerva.microsoft.com/v/0.0.20260816.1-26.08.16-prod/","serverVersionedEndpoint":"https://web.powerva.microsoft.com/s/prod.6a7ab500/v/0.0.20260816.1-26.08.16-prod/","assetVersion":"0.0.20260816.1-26.08.16-prod","graphQLHash":"","islandsInfra":true};window._makerConfig=window._ppuxConfig</script><script src="https://shellprod.msocdn.com/api/shellbootstrapper/business/oneshell" type="text/javascript" crossorigin="anonymous"></script><script type="text/javascript">window._ppux = { appName: "powerva-microsoft-com"}; /*!
+* Copyright (C) Microsoft Corporation. All rights reserved.
+*/
+!function(o){o.log=function(a,e){var t=function(){var o="https://noam.events.data.microsoft.com/OneCollector/1.0/",a="https://tb.events.data.microsoft.com/OneCollector/1.0/",e={dod:{collectorEndpoint:"https://pf.events.data.microsoft.com/OneCollector/1.0/",instrumentationKey:"cc02ee26f72a4a83939e6c3e82d1a495-a6f65a55-95c5-42c3-88e0-69dc4cb21d04-7071",country:"us",userDataBoundary:"na"},doj:{collectorEndpoint:a,instrumentationKey:"4ff4d47d3fad4fb5b786d75e14c02067-4955fc86-57e6-46f4-987d-0d95eaa5a6cb-7473",country:"us",userDataBoundary:"na"},gov:{collectorEndpoint:a,instrumentationKey:"dc28f9c3788d46e0ac127a7d6a04a5dc-5aa7c699-fbf6-4e9b-b12a-395405e95140-6972",country:"us",userDataBoundary:"na"},high:{collectorEndpoint:a,instrumentationKey:"72e3e0daa96f42668b3c9fd021c86ea6-83159b64-2846-4c7c-8fec-d04e29c5978d-7538",country:"us",userDataBoundary:"na"},rx:{collectorEndpoint:"https://collector.azure.microsoft.scloud/OneCollector/1.0/",instrumentationKey:"be11f185a126463cbfc6e2739247bfac-e0bae2dc-b14c-4a7c-b7c3-aba17d731a33-6846",country:"us",userDataBoundary:"na"},ex:{collectorEndpoint:"https://collector.azure.eaglex.ic.gov/OneCollector/1.0/",instrumentationKey:"be11f185a126463cbfc6e2739247bfac-e0bae2dc-b14c-4a7c-b7c3-aba17d731a33-6846",country:"us",userDataBoundary:"na"},mooncake:{collectorEndpoint:"https://noam.events.data.microsoft.com/OneCollector/1.0/",instrumentationKey:"2345dc8bde9a4bfda2b97a1a86d397a9-400abc3c-6a63-455c-934a-ae551ecd6590-6815",country:"cn",userDataBoundary:"cn"},prod:{collectorEndpoint:o,instrumentationKey:"be11f185a126463cbfc6e2739247bfac-e0bae2dc-b14c-4a7c-b7c3-aba17d731a33-6846",country:"us",userDataBoundary:"na"},preview:{collectorEndpoint:o,instrumentationKey:"e19bd3485f7045f5b2f12589be2f9c65-28945939-c541-4dbf-a7c7-8c38da9cf28b-7111",country:"us",userDataBoundary:"na"},local:{collectorEndpoint:o,instrumentationKey:"cadcf7c3ebd64ca3a3d6cdedcf5d61d3-75d66442-d7fa-46b4-905e-1f8763947118-7260",country:"us",userDataBoundary:"na"},test:{collectorEndpoint:o,instrumentationKey:"162069f1d6394cbcb6d60f5f93d8f0b1-da65e7a6-6df6-4486-88c6-5b33513aa0c2-7575",country:"us",userDataBoundary:"na"},tie:{collectorEndpoint:o,instrumentationKey:"162069f1d6394cbcb6d60f5f93d8f0b1-da65e7a6-6df6-4486-88c6-5b33513aa0c2-7575",country:"us",userDataBoundary:"na"},preprod:{collectorEndpoint:o,instrumentationKey:"7fddd6ee2614458fb9a4737b5ba94398-1776a4be-f01c-4d03-ba66-fd522aba67b4-7533",country:"us",userDataBoundary:"na"}};function t(o){return'"'+o+'"'}return function(o,a,n){var r=e[n];if(!r)return"";var c=Date.prototype.toISOString?(new Date).toISOString():"",i=r.instrumentationKey,d="";window.location&&window.location.protocol&&window.location.hostname&&(d="file:"===window.location.protocol?"local":window.location.hostname);var l={name:t("Event"),time:t(c),iKey:t("o:"+i.substring(0,i.indexOf("-"))),apikey:i,"ext.utc.eventFlags":1048576,"*time":t(c),"*eventName":t(o),"*domain":t(d),"*appEnvironment":t(n),"*country":t(r.country),"*userDataBoundary":t(r.userDataBoundary)};for(var u in a)a.hasOwnProperty(u)&&(l["*"+u]=t(a[u]));var s=r.collectorEndpoint+"t.js?qsp=true";for(var u in l)l.hasOwnProperty(u)&&(s+="&"+encodeURIComponent(u)+"="+encodeURIComponent(l[u]));return s}}(),n=window._makerConfig||window._ppuxConfig,r={appName:o.appName||"",scope:"fallback",buildNumber:n&&n.assetVersion||"",userRegion:(n&&n.location||"").toLowerCase()};for(var c in e)e.hasOwnProperty(c)&&("object"==typeof e[c]?r[c]=JSON.stringify(e[c]):r[c]=e[c]);var i=(n&&n.region||"test").toLowerCase(),d=document.createElement("img");d.alt="",d.src=t(a||"unknown",r,i),d.style.display="none",document.body.appendChild(d)},o.loadFallback=function(a,e){var t=a.src,n=window._makerConfig||window._ppuxConfig;if(!n||!n.alternativePublicPath||e)throw i(r=new Error("onerror event fired, with no alternate path to fetch from"),t,void 0,e),"/auth"===window.location.pathname&&(history.replaceState(null,"",window.location.origin),window.location.replace("/autherror")),r;var r,c=document.createElement("script");function i(a,e,t,n){var r=a.stack&&a.stack.replaceAll(window.location.toString(),(window.location.origin||"")+(window.location.pathName||""));a.stack=r,o.log&&o.log("PPUX/ScriptLoad/Failure",{eventType:"Trace",team:"Shell",severity:t?"Warning":"Error",errorCode:"ScriptLoadFailure",message:a.message,errorStack:a.stack,eventInfo:{error:JSON.stringify(a,Object.getOwnPropertyNames(a)),failedSrc:e,hasAltPath:!!t,altPath:t,isAltPath:!!n}})}c.crossOrigin=a.crossOrigin,a.noModule?c.noModule=!0:c.type="module",c.src=t.replace(n.publicPath,n.alternativePublicPath),c.onerror=function(){window._ppux&&window._ppux.loadFallback&&window._ppux.loadFallback(this,!0)},a.insertAdjacentElement("afterend",c),i(r=new Error("onerror event fired, trying alternate path fetch"),t,c.src,e)}}(window._ppux||{});;</script><script type="text/javascript">function loadScript(src, type, isNoModule) {
+var scriptElement = document.createElement('script');
+scriptElement.crossOrigin = 'anonymous';
+scriptElement.src = src;
+if (type) {
+scriptElement.type = type;
+}
+if (isNoModule) {
+scriptElement.setAttribute('nomodule', '');
+}
+scriptElement.onerror = function() {
+window._ppux && window._ppux.loadFallback && window._ppux.loadFallback(this)
+};
+document.body.appendChild(scriptElement);
+}</script><script type="text/javascript">loadScript('https://content.powerapps.com/resource/makerx/static/js/module/main.b969292c.js', 'module', false);</script><script type="text/javascript" nomodule>if(window._ppux=window._ppux||{},window._ppux.isLegacyBlockDisabled=!1,window._ppux.isReturnedFromAuth=!1,window._ppux.isInIframe=window.self!==window.top,window._ppux.isLegacyBlockDisabled||window._ppux.isReturnedFromAuth||window._ppux.isInIframe)window._ppux.log&&window._ppux.log("Bypass/LegacyBlockingPage",{eventType:"Trace",team:"Shell",severity:"Warning",eventInfo:{userAgent:window.navigator.userAgent||"",bypassLegacyBlockData:JSON.stringify({isLegacyBlockDisabled:window._ppux.isLegacyBlockDisabled,isReturnedFromAuth:window._ppux.isReturnedFromAuth,isInIframe:window._ppux.isInIframe})}});else try{loadLegacyBlockPage("#0b556a","Power Virtual Agents","https://go.microsoft.com/fwlink/?linkid=2208603")}catch(e){window._ppux.log&&window._ppux.log("Error/LegacyBlockingPage",{eventType:"Trace",team:"Shell",severity:"Error",errorCode:"LegacyBlockingPageError",errorName:e.name,message:e.message,eventInfo:{userAgent:window.navigator.userAgent||"",error:JSON.stringify(e,Object.getOwnPropertyNames(e))}})}</script></body></html>
+
+This is the classical interface
+I'd like to remove New Copilot Studio experience Improved task completion, deeper workflow integration, and more accurate responses. Try now option on the page
+
+This is the classic page source:
+
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name="theme-color" content="#000000"><meta name="robots" content="noindex,nofollow,noarchive"><meta name="color-scheme" content="light dark"/><link rel="manifest" href="/manifest.json"><link rel="shortcut icon" href="/favicon.ico?v=2"><title>Microsoft Copilot Studio</title><style>#root,html{height:100%}body{margin:0;padding:0;font-family:sans-serif;height:100%}iframe{border:0}*{box-sizing:border-box;margin:0}</style><script nomodule crossorigin="anonymous" src="https://content.powerapps.com/resource/makerx/static/legacy-block.8HYFEdnf.js"></script></head><body id="body"><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div><script type="text/javascript">window._ppuxConfig={"aadClientId":"96ff4394-9197-43aa-b393-6a41652e21f8","location":"NDE","region":"prod","geo":"DE","publicPath":"https://content.powerapps.com/resource/makerx/","alternativePublicPath":"https://static.powerapps.com/resource/makerx/","graphQLEndpoint":"https://graphql/","portalVersionedEndpoint":"https://web.powerva.microsoft.com/v/0.0.20260816.1-26.08.16-prod/","serverVersionedEndpoint":"https://web.powerva.microsoft.com/s/prod.6a7ab500/v/0.0.20260816.1-26.08.16-prod/","assetVersion":"0.0.20260816.1-26.08.16-prod","graphQLHash":"","islandsInfra":true};window._makerConfig=window._ppuxConfig</script><script src="https://shellprod.msocdn.com/api/shellbootstrapper/business/oneshell" type="text/javascript" crossorigin="anonymous"></script><script type="text/javascript">window._ppux = { appName: "powerva-microsoft-com"}; /*!
+* Copyright (C) Microsoft Corporation. All rights reserved.
+*/
+!function(o){o.log=function(a,e){var t=function(){var o="https://noam.events.data.microsoft.com/OneCollector/1.0/",a="https://tb.events.data.microsoft.com/OneCollector/1.0/",e={dod:{collectorEndpoint:"https://pf.events.data.microsoft.com/OneCollector/1.0/",instrumentationKey:"cc02ee26f72a4a83939e6c3e82d1a495-a6f65a55-95c5-42c3-88e0-69dc4cb21d04-7071",country:"us",userDataBoundary:"na"},doj:{collectorEndpoint:a,instrumentationKey:"4ff4d47d3fad4fb5b786d75e14c02067-4955fc86-57e6-46f4-987d-0d95eaa5a6cb-7473",country:"us",userDataBoundary:"na"},gov:{collectorEndpoint:a,instrumentationKey:"dc28f9c3788d46e0ac127a7d6a04a5dc-5aa7c699-fbf6-4e9b-b12a-395405e95140-6972",country:"us",userDataBoundary:"na"},high:{collectorEndpoint:a,instrumentationKey:"72e3e0daa96f42668b3c9fd021c86ea6-83159b64-2846-4c7c-8fec-d04e29c5978d-7538",country:"us",userDataBoundary:"na"},rx:{collectorEndpoint:"https://collector.azure.microsoft.scloud/OneCollector/1.0/",instrumentationKey:"be11f185a126463cbfc6e2739247bfac-e0bae2dc-b14c-4a7c-b7c3-aba17d731a33-6846",country:"us",userDataBoundary:"na"},ex:{collectorEndpoint:"https://collector.azure.eaglex.ic.gov/OneCollector/1.0/",instrumentationKey:"be11f185a126463cbfc6e2739247bfac-e0bae2dc-b14c-4a7c-b7c3-aba17d731a33-6846",country:"us",userDataBoundary:"na"},mooncake:{collectorEndpoint:"https://noam.events.data.microsoft.com/OneCollector/1.0/",instrumentationKey:"2345dc8bde9a4bfda2b97a1a86d397a9-400abc3c-6a63-455c-934a-ae551ecd6590-6815",country:"cn",userDataBoundary:"cn"},prod:{collectorEndpoint:o,instrumentationKey:"be11f185a126463cbfc6e2739247bfac-e0bae2dc-b14c-4a7c-b7c3-aba17d731a33-6846",country:"us",userDataBoundary:"na"},preview:{collectorEndpoint:o,instrumentationKey:"e19bd3485f7045f5b2f12589be2f9c65-28945939-c541-4dbf-a7c7-8c38da9cf28b-7111",country:"us",userDataBoundary:"na"},local:{collectorEndpoint:o,instrumentationKey:"cadcf7c3ebd64ca3a3d6cdedcf5d61d3-75d66442-d7fa-46b4-905e-1f8763947118-7260",country:"us",userDataBoundary:"na"},test:{collectorEndpoint:o,instrumentationKey:"162069f1d6394cbcb6d60f5f93d8f0b1-da65e7a6-6df6-4486-88c6-5b33513aa0c2-7575",country:"us",userDataBoundary:"na"},tie:{collectorEndpoint:o,instrumentationKey:"162069f1d6394cbcb6d60f5f93d8f0b1-da65e7a6-6df6-4486-88c6-5b33513aa0c2-7575",country:"us",userDataBoundary:"na"},preprod:{collectorEndpoint:o,instrumentationKey:"7fddd6ee2614458fb9a4737b5ba94398-1776a4be-f01c-4d03-ba66-fd522aba67b4-7533",country:"us",userDataBoundary:"na"}};function t(o){return'"'+o+'"'}return function(o,a,n){var r=e[n];if(!r)return"";var c=Date.prototype.toISOString?(new Date).toISOString():"",i=r.instrumentationKey,d="";window.location&&window.location.protocol&&window.location.hostname&&(d="file:"===window.location.protocol?"local":window.location.hostname);var l={name:t("Event"),time:t(c),iKey:t("o:"+i.substring(0,i.indexOf("-"))),apikey:i,"ext.utc.eventFlags":1048576,"*time":t(c),"*eventName":t(o),"*domain":t(d),"*appEnvironment":t(n),"*country":t(r.country),"*userDataBoundary":t(r.userDataBoundary)};for(var u in a)a.hasOwnProperty(u)&&(l["*"+u]=t(a[u]));var s=r.collectorEndpoint+"t.js?qsp=true";for(var u in l)l.hasOwnProperty(u)&&(s+="&"+encodeURIComponent(u)+"="+encodeURIComponent(l[u]));return s}}(),n=window._makerConfig||window._ppuxConfig,r={appName:o.appName||"",scope:"fallback",buildNumber:n&&n.assetVersion||"",userRegion:(n&&n.location||"").toLowerCase()};for(var c in e)e.hasOwnProperty(c)&&("object"==typeof e[c]?r[c]=JSON.stringify(e[c]):r[c]=e[c]);var i=(n&&n.region||"test").toLowerCase(),d=document.createElement("img");d.alt="",d.src=t(a||"unknown",r,i),d.style.display="none",document.body.appendChild(d)},o.loadFallback=function(a,e){var t=a.src,n=window._makerConfig||window._ppuxConfig;if(!n||!n.alternativePublicPath||e)throw i(r=new Error("onerror event fired, with no alternate path to fetch from"),t,void 0,e),"/auth"===window.location.pathname&&(history.replaceState(null,"",window.location.origin),window.location.replace("/autherror")),r;var r,c=document.createElement("script");function i(a,e,t,n){var r=a.stack&&a.stack.replaceAll(window.location.toString(),(window.location.origin||"")+(window.location.pathName||""));a.stack=r,o.log&&o.log("PPUX/ScriptLoad/Failure",{eventType:"Trace",team:"Shell",severity:t?"Warning":"Error",errorCode:"ScriptLoadFailure",message:a.message,errorStack:a.stack,eventInfo:{error:JSON.stringify(a,Object.getOwnPropertyNames(a)),failedSrc:e,hasAltPath:!!t,altPath:t,isAltPath:!!n}})}c.crossOrigin=a.crossOrigin,a.noModule?c.noModule=!0:c.type="module",c.src=t.replace(n.publicPath,n.alternativePublicPath),c.onerror=function(){window._ppux&&window._ppux.loadFallback&&window._ppux.loadFallback(this,!0)},a.insertAdjacentElement("afterend",c),i(r=new Error("onerror event fired, trying alternate path fetch"),t,c.src,e)}}(window._ppux||{});;</script><script type="text/javascript">function loadScript(src, type, isNoModule) {
+var scriptElement = document.createElement('script');
+scriptElement.crossOrigin = 'anonymous';
+scriptElement.src = src;
+if (type) {
+scriptElement.type = type;
+}
+if (isNoModule) {
+scriptElement.setAttribute('nomodule', '');
+}
+scriptElement.onerror = function() {
+window._ppux && window._ppux.loadFallback && window._ppux.loadFallback(this)
+};
+document.body.appendChild(scriptElement);
+}</script><script type="text/javascript">loadScript('https://content.powerapps.com/resource/makerx/static/js/module/main.b969292c.js', 'module', false);</script><script type="text/javascript" nomodule>if(window._ppux=window._ppux||{},window._ppux.isLegacyBlockDisabled=!1,window._ppux.isReturnedFromAuth=!1,window._ppux.isInIframe=window.self!==window.top,window._ppux.isLegacyBlockDisabled||window._ppux.isReturnedFromAuth||window._ppux.isInIframe)window._ppux.log&&window._ppux.log("Bypass/LegacyBlockingPage",{eventType:"Trace",team:"Shell",severity:"Warning",eventInfo:{userAgent:window.navigator.userAgent||"",bypassLegacyBlockData:JSON.stringify({isLegacyBlockDisabled:window._ppux.isLegacyBlockDisabled,isReturnedFromAuth:window._ppux.isReturnedFromAuth,isInIframe:window._ppux.isInIframe})}});else try{loadLegacyBlockPage("#0b556a","Power Virtual Agents","https://go.microsoft.com/fwlink/?linkid=2208603")}catch(e){window._ppux.log&&window._ppux.log("Error/LegacyBlockingPage",{eventType:"Trace",team:"Shell",severity:"Error",errorCode:"LegacyBlockingPageError",errorName:e.name,message:e.message,eventInfo:{userAgent:window.navigator.userAgent||"",error:JSON.stringify(e,Object.getOwnPropertyNames(e))}})}</script></body></html>
+
+Odlično — time smo praktično potvrdili da je ključ:
+
+AgenticAutomationsShellOptIn
+
+i da radi ovako:
+
+false = classic experience
+true  = new experience
+
+Sledeći test je još važniji: u new experience otvori Console i izvrši:
+
+localStorage.setItem("AgenticAutomationsShellOptIn", "false");
+location.reload();
+
+Ako se nakon reload-a vrati classic UI, onda imamo vrlo čisto rešenje bez blokiranja Microsoft skripti ili URL-ova.
+
+Za enterprise kontrolu bih zatim napravio Edge extension koji radi dve stvari: pri svakom otvaranju copilotstudio.microsoft.com forsira AgenticAutomationsShellOptIn=false, a u classic UI sakrije banner New Copilot Studio experience / Try now. Time korisnik ne može trajno da uključi novi experience čak ni ako nekako dođe do toggle-a.
+
+Ako želiš, sledeće mogu odmah da ti napravim kompletan Edge extension folder spreman za testiranje preko edge://extensions → Load unpacked, pa posle možemo preći na Intune force-install deployment.
+
+Ajde
+
+Napravio sam kompletan Edge/Chrome extension spreman za testiranje:
+
+Preuzmi Copilot Studio Classic Experience extension
+
+Radi tri stvari: forsira AgenticAutomationsShellOptIn = false, vraća classic experience ako je new experience aktiviran, i skriva New Copilot Studio experience / Try now banner kao i New experience toggle.
+
+Za test u Edge-u: raspakuj ZIP, otvori edge://extensions, uključi Developer mode, klikni Load unpacked i izaberi raspakovani copilot-studio-classic-extension folder. Zatim otvori Copilot Studio.
+
+U DevTools Console proveri:
+
+localStorage.getItem("AgenticAutomationsShellOptIn")
+
+treba da vrati:
+
+"false"
+
+Probaj zatim i da vidiš da li su Try now banner i New experience toggle potpuno nestali. Ako ovo radi kako treba, sledeći korak je da ga spremimo za centralni Edge/Intune force deployment, tako da korisnici ne mogu da ga isključe. 
+
+Make me a simple index html page that I can use to promote this extension as solution. Also provide instructions how can this be deployed in enterprise environments via policies
+
+Done — I created a simple promotional HTML page for the solution:
+
+Download the HTML page
+
+It presents the extension as an enterprise compatibility/governance control, explains what it does, and includes deployment guidance for Group Policy, Intune, and the Microsoft Edge management service.
+
+For enterprise deployment, the cleanest approach is to force-install the extension. Microsoft Edge supports ExtensionInstallForcelist; force-installed extensions are installed silently and users cannot disable or remove them.
+
+For Group Policy, install the current Microsoft Edge ADMX templates and go to:
+
+Administrative Templates → Microsoft Edge → Extensions → Control which extensions are installed silently
+
+Enable it and add either just the extension ID for an Edge Add-ons hosted extension, or for a self-hosted extension:
+
+EXTENSION_ID;https://your-company.example/extensions/copilot-studio-classic/update.xml
+
+Microsoft specifically documents this extension_id;update_url pattern for self-hosted extensions.
+
+For Intune, use an Edge Settings Catalog/configuration policy and configure ExtensionInstallForcelist. You can also use the more granular ExtensionSettings policy. With ExtensionSettings, the relevant configuration is conceptually:
+
+{
+  "YOUR_EXTENSION_ID": {
+    "installation_mode": "force_installed",
+    "update_url": "https://your-company.example/extensions/copilot-studio-classic/update.xml"
+  }
+}
+
+force_installed prevents users from disabling or uninstalling it.
+
+You can also manage it from the Microsoft Edge management service in Microsoft 365 admin center: select an Edge configuration profile, open Extensions, add the extension by ID, and set the installation policy to Force. Microsoft states that a forced extension is automatically installed and users cannot remove it.
+
+For a private enterprise extension, you essentially have two distribution models. The simpler operational model is publishing it through Microsoft Edge Add-ons and controlling deployment by policy. The alternative is self-hosting the .crx and an XML update manifest on your own HTTPS endpoint. Microsoft supports self-hosted enterprise extensions and policy-based force installation.
+
+One thing I would explicitly state when promoting this internally: this is a managed workaround/compatibility control, not an official Copilot Studio tenant setting. It currently relies on:
+
+AgenticAutomationsShellOptIn = false
+
+and on the current Copilot Studio DOM for hiding the promotion. Microsoft can change either in a future release, so the extension should be tested after major Copilot Studio updates. 
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Copilot Studio Classic Experience Guard</title>
+  <meta name="description" content="Enterprise browser extension that keeps Microsoft Copilot Studio on the classic experience and hides new-experience promotion controls." />
+  <style>
+    :root {
+      --bg:#f7f8fc; --panel:#fff; --text:#171717; --muted:#5f6368; --line:#e5e7eb;
+      --brand:#4f46e5; --brand2:#2563eb; --good:#087830; --soft:#eef2ff;
+      --shadow:0 20px 60px rgba(17,24,39,.08);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,"Segoe UI",Arial,sans-serif;color:var(--text);
+      background:radial-gradient(circle at top right,rgba(79,70,229,.10),transparent 28rem),var(--bg)}
+    a{color:inherit}.wrap{width:min(1120px,calc(100% - 40px));margin:0 auto}
+    header{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .logo{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:#fff;font-weight:800;
+      background:linear-gradient(135deg,var(--brand),var(--brand2));box-shadow:0 10px 28px rgba(79,70,229,.28)}
+    .badge{padding:6px 10px;border-radius:999px;background:#ecfdf3;color:var(--good);font-size:12px;font-weight:700}
+    .hero{display:grid;grid-template-columns:1.12fr .88fr;gap:42px;align-items:center;padding:70px 0 64px}
+    h1{font-size:clamp(42px,6vw,72px);line-height:.98;letter-spacing:-3px;margin:0 0 24px}
+    .lead{font-size:20px;line-height:1.6;color:var(--muted);max-width:680px}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 18px;border-radius:11px;
+      text-decoration:none;border:1px solid var(--line);background:#fff;font-weight:700}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border:0}
+    .mock{background:var(--panel);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:18px}
+    .browserbar{display:flex;gap:7px;padding-bottom:14px}.dot{width:10px;height:10px;border-radius:50%;background:#d1d5db}
+    .screen{background:#fbfbfd;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+    .banner{margin:18px;padding:14px 16px;border:1px solid #d9dce3;border-radius:10px;background:#fff;color:#575b66;font-size:13px}
+    .banner.hide{opacity:.18;text-decoration:line-through}.app{padding:28px 24px 32px}.app h3{margin:0 0 12px;font-size:24px}
+    .table{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+    .row{display:grid;grid-template-columns:2fr 1fr 1fr;padding:12px 14px;border-top:1px solid var(--line);font-size:13px}
+copilot-studio-classic-solution.html
+HTML
+
+Explain 
